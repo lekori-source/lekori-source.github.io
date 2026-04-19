@@ -280,11 +280,11 @@ section{padding:60px 18px}
 <button class="nav-toggle" id="navToggle" aria-label="Меню"><span></span><span></span><span></span></button>
 <nav class="nav-menu" id="navMenu">
 <a href="/" class="nav-home"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Главная</a>
-<a href="#what"><svg viewBox="0 0 24 24"><path d="M4 19h16"/><path d="M7 16V9"/><path d="M12 16V5"/><path d="M17 16v-3"/></svg>Что вас ждёт</a>
-<a href="#clinics"><svg viewBox="0 0 24 24"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/></svg>Клиники и программы</a>
-<a href="#compare"><svg viewBox="0 0 24 24"><path d="M3 18h18"/><path d="M6 18V8"/><path d="M12 18V5"/><path d="M18 18v-6"/></svg>Сравнение</a>
-<a href="#trust"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="13" x2="14" y2="13"/></svg>Отзывы</a>
-<a href="#contacts"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Контакты</a>
+<a href="javascript:void(0)" data-scroll-target="what"><svg viewBox="0 0 24 24"><path d="M4 19h16"/><path d="M7 16V9"/><path d="M12 16V5"/><path d="M17 16v-3"/></svg>Что вас ждёт</a>
+<a href="javascript:void(0)" data-scroll-target="clinics"><svg viewBox="0 0 24 24"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/></svg>Клиники и программы</a>
+<a href="javascript:void(0)" data-scroll-target="compare"><svg viewBox="0 0 24 24"><path d="M3 18h18"/><path d="M6 18V8"/><path d="M12 18V5"/><path d="M18 18v-6"/></svg>Сравнение</a>
+<a href="javascript:void(0)" data-scroll-target="trust"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="13" x2="14" y2="13"/></svg>Отзывы</a>
+<a href="javascript:void(0)" data-scroll-target="contacts"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Контакты</a>
 <div class="nav-sep"></div>
 <div class="nav-dir">Направления</div>
 <a href="/diagnostic/" class="nav-gold-current"><span style="font-size:15px;width:16px;display:inline-flex;justify-content:center;margin-top:-2px">⚕</span>Диагностика</a>
@@ -304,7 +304,7 @@ section{padding:60px 18px}
 <div class="hook"><b>50+</b><span>программ</span></div>
 <div class="hook"><b>0 ₽</b><span>наш сервис</span></div>
 </div>
-<a href="#clinics" class="hero-cta">Выбрать программу</a>
+<a href="javascript:void(0)" data-scroll-target="clinics" class="hero-cta">Выбрать программу</a>
 </div>
 <div class="hero-scroll">↓ scroll</div>
 </section>
@@ -443,7 +443,7 @@ section{padding:60px 18px}
 </div></div></div>
 </div>
 
-<div class="price-cta rv"><a href="#contacts">Узнать точную стоимость</a></div>
+<div class="price-cta rv"><a href="javascript:void(0)" data-scroll-target="contacts">Узнать точную стоимость</a></div>
 </div>
 </section>
 
@@ -523,6 +523,23 @@ var tgl=document.getElementById('navToggle'),mn=document.getElementById('navMenu
 tgl.onclick=function(){tgl.classList.toggle('active');mn.classList.toggle('open')};
 for(var i=0,a=mn.querySelectorAll('a');i<a.length;i++)a[i].onclick=function(){if(this.getAttribute('href').charAt(0)==='#'){tgl.classList.remove('active');mn.classList.remove('open')}};
 document.onclick=function(e){if(!tgl.contains(e.target)&&!mn.contains(e.target)){tgl.classList.remove('active');mn.classList.remove('open')}};
+function initNoHashScrollLinks(){
+var links=document.querySelectorAll('a[data-scroll-target]');
+for(var i=0;i<links.length;i++){
+links[i].onclick=function(e){
+var id=this.getAttribute('data-scroll-target');
+var target=document.getElementById(id);
+if(!target)return false;
+if(e&&e.preventDefault)e.preventDefault();
+if(target.scrollIntoView){
+try{target.scrollIntoView({behavior:'smooth',block:'start'});}catch(err){target.scrollIntoView(true);}
+}
+if(window.history&&history.replaceState){history.replaceState(null,'',window.location.pathname+window.location.search);}
+if(tgl&&mn){tgl.classList.remove('active');mn.classList.remove('open');}
+return false;
+};
+}
+}
 function initHashlessAnchors(){
 var links=document.querySelectorAll('a[href^="#"]');
 for(var i=0;i<links.length;i++){
@@ -674,6 +691,7 @@ window.LEKORI_I18N.lang=lang;
 }
 
 initHashlessAnchors();
+initNoHashScrollLinks();
 initCtaMap();
 </script>
 </body>

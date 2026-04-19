@@ -16,9 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"Lekori","url":"https://lekori.ru/","email":"info@lekori.ru","telephone":"+7-925-996-86-11","sameAs":["https://t.me/lekori_contact"],"description":"Платформа медицинского туризма в Южную Корею с полным сопровождением и переводчиком."}
-</script>
+ param($m) ($m.Value -replace '\s*initNoHashScrollLinks\(\);\s*</script>','</script>') 
 <style>
 :root{--ink:#0c1117;--ink-soft:#2a3441;--ink-muted:#5a6a7a;--sand:#f5f0ea;--sand-light:#faf8f5;--cream:#ece5db;--gold:#b8965a;--gold-light:#d4b97c;--gold-pale:#f0e6d2;--teal:#3a8f85;--white:#fff;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Manrope',system-ui,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
@@ -195,12 +193,12 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
 <button class="nav-toggle" id="navToggle" aria-label="Меню"><span></span><span></span><span></span></button>
 <nav class="nav-menu" id="navMenu">
 <a href="/" class="nav-home"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Главная</a>
-<a href="#why"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Почему Корея</a>
-<a href="#process"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Как это работает</a>
-<a href="#cases"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v-1h6v1"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/></svg>Кейсы</a>
-<a href="#free"><svg viewBox="0 0 24 24"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"/><polyline points="8 12 12 16 16 12"/><line x1="12" y1="16" x2="12" y2="3"/></svg>Условия</a>
-<a href="#faq"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Вопросы</a>
-<a href="#contacts"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Контакты</a>
+<a href="javascript:void(0)" data-scroll-target="why"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Почему Корея</a>
+<a href="javascript:void(0)" data-scroll-target="process"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Как это работает</a>
+<a href="javascript:void(0)" data-scroll-target="cases"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v-1h6v1"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/></svg>Кейсы</a>
+<a href="javascript:void(0)" data-scroll-target="free"><svg viewBox="0 0 24 24"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"/><polyline points="8 12 12 16 16 12"/><line x1="12" y1="16" x2="12" y2="3"/></svg>Условия</a>
+<a href="javascript:void(0)" data-scroll-target="faq"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Вопросы</a>
+<a href="javascript:void(0)" data-scroll-target="contacts"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Контакты</a>
 <div class="nav-sep"></div>
 <div class="nav-dir">Направления</div>
 <a href="/diagnostic/"><span style="font-size:15px;width:16px;display:inline-flex;justify-content:center;margin-top:-2px">⚕</span>Диагностика</a>
@@ -219,7 +217,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
 <div class="hook-pill">Переводчик и полное сопровождение уже включены</div>
 <div class="hook-pill">Без наценки: вы оплачиваете счёт клиники напрямую</div>
 </div>
-<a href="#directions" class="hero-cta" data-track="hero_directions" data-section="hero">Наши направления</a>
+<a href="javascript:void(0)" data-scroll-target="directions" class="hero-cta" data-track="hero_directions" data-section="hero">Наши направления</a>
 </div>
 <div class="hero-scroll">↓ scroll</div>
 </section>
@@ -370,6 +368,23 @@ var tgl=document.getElementById('navToggle'),mn=document.getElementById('navMenu
 tgl.onclick=function(){tgl.classList.toggle('active');mn.classList.toggle('open')};
 for(var i=0,a=mn.querySelectorAll('a');i<a.length;i++)a[i].onclick=function(){if(this.getAttribute('href').charAt(0)==='#'){tgl.classList.remove('active');mn.classList.remove('open')}};
 document.onclick=function(e){if(!tgl.contains(e.target)&&!mn.contains(e.target)){tgl.classList.remove('active');mn.classList.remove('open')}};
+function initNoHashScrollLinks(){
+var links=document.querySelectorAll('a[data-scroll-target]');
+for(var i=0;i<links.length;i++){
+links[i].onclick=function(e){
+var id=this.getAttribute('data-scroll-target');
+var target=document.getElementById(id);
+if(!target)return false;
+if(e&&e.preventDefault)e.preventDefault();
+if(target.scrollIntoView){
+try{target.scrollIntoView({behavior:'smooth',block:'start'});}catch(err){target.scrollIntoView(true);}
+}
+if(window.history&&history.replaceState){history.replaceState(null,'',window.location.pathname+window.location.search);}
+if(tgl&&mn){tgl.classList.remove('active');mn.classList.remove('open');}
+return false;
+};
+}
+}
 function initHashlessAnchors(){
 var links=document.querySelectorAll('a[href^="#"]');
 for(var i=0;i<links.length;i++){
@@ -427,6 +442,8 @@ window.LEKORI_I18N.lang=lang;
 }
 
 initHashlessAnchors();
+
+initNoHashScrollLinks();
 </script>
 </body>
 </html>
