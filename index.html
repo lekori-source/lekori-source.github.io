@@ -204,7 +204,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
 <div class="nav-sep"></div>
 <div class="nav-dir">Направления</div>
 <a href="/diagnostic/"><span style="font-size:15px;width:16px;display:inline-flex;justify-content:center;margin-top:-2px">⚕</span>Диагностика</a>
-<a href="/detnal/" class="nav-green"><span style="font-size:15px;width:16px;display:inline-flex;justify-content:center;margin-top:-2px">⟡</span>Стоматология</a>
+<a href="/dental/" class="nav-green"><span style="font-size:15px;width:16px;display:inline-flex;justify-content:center;margin-top:-2px">⟡</span>Стоматология</a>
 <a href="/cosmetology/" class="nav-rose"><span style="font-size:15px;width:16px;display:inline-flex;justify-content:center">✿</span>Косметология</a>
 </nav>
 
@@ -236,7 +236,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
 <div class="dir-desc">Чек-апы, онкоскрининг, МРТ, ДНК-тестирование, антиэйджинг. Ведущие университетские госпитали Сеула.</div>
 <div class="dir-arrow">Подробнее</div>
 </a>
-<a href="/detnal/" class="dir-card dir-dental rv rd2" data-track="direction_dental" data-section="directions">
+<a href="/dental/" class="dir-card dir-dental rv rd2" data-track="direction_dental" data-section="directions">
 <div class="dir-icon" style="font-size:30px">⟡</div>
 <div class="dir-name">Стоматология</div>
 <div class="dir-desc">Виниры, импланты, ортодонтия, лечение. Цифровое моделирование улыбки, премиальные материалы.</div>
@@ -370,6 +370,24 @@ var tgl=document.getElementById('navToggle'),mn=document.getElementById('navMenu
 tgl.onclick=function(){tgl.classList.toggle('active');mn.classList.toggle('open')};
 for(var i=0,a=mn.querySelectorAll('a');i<a.length;i++)a[i].onclick=function(){if(this.getAttribute('href').charAt(0)==='#'){tgl.classList.remove('active');mn.classList.remove('open')}};
 document.onclick=function(e){if(!tgl.contains(e.target)&&!mn.contains(e.target)){tgl.classList.remove('active');mn.classList.remove('open')}};
+function initHashlessAnchors(){
+var links=document.querySelectorAll('a[href^="#"]');
+for(var i=0;i<links.length;i++){
+links[i].addEventListener('click',function(e){
+var href=this.getAttribute('href');
+if(!href||href.length<2)return;
+var id=href.substring(1);
+var target=document.getElementById(id);
+if(!target)return;
+e.preventDefault();
+if(target.scrollIntoView){
+try{target.scrollIntoView({behavior:'smooth',block:'start'});}catch(err){target.scrollIntoView(true);}
+}
+if(window.history&&history.replaceState){history.replaceState(null,'',window.location.pathname+window.location.search);}
+if(tgl&&mn){tgl.classList.remove('active');mn.classList.remove('open');}
+});
+}
+}
 if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(en){for(var j=0;j<en.length;j++)if(en[j].isIntersecting){en[j].target.classList.add('visible');obs.unobserve(en[j].target)}},{threshold:.1,rootMargin:'0px 0px -30px 0px'});for(var i=0,el=document.querySelectorAll('.rv,.rl');i<el.length;i++)obs.observe(el[i])}else{for(var i=0,el=document.querySelectorAll('.rv,.rl');i<el.length;i++)el[i].classList.add('visible')}
 
 function trackEvent(name,params){
@@ -408,6 +426,7 @@ document.documentElement.setAttribute('data-lang',lang);
 window.LEKORI_I18N.lang=lang;
 }
 
+initHashlessAnchors();
 </script>
 </body>
 </html>
